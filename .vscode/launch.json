@@ -1,0 +1,21 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Diet Chatbot (Gradio)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "diet_assistant",
+      "envFile": "${workspaceFolder}/.env",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Feedback Analyzer (examples)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "feedback_analyzer",
+      "envFile": "${workspaceFolder}/.env",
+      "console": "integratedTerminal"
+    }
+  ]
+}
