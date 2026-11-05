@@ -16,6 +16,21 @@
       "module": "feedback_analyzer",
       "envFile": "${workspaceFolder}/.env",
       "console": "integratedTerminal"
+    },
+    {
+      "name": "Feedback Analyzer (streamlined)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "feedback_analyzer.streamlined",
+      "envFile": "${workspaceFolder}/.env",
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Pydantic Validation Demo",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "validation_demo",
+      "console": "integratedTerminal"
     }
   ]
 }

@@ -5,9 +5,13 @@ Two small LLM apps built with **LangChain + OpenAI**, in one repo:
 | Package | What it does |
 |---|---|
 | `diet_assistant/` | Streaming Diet Planning chatbot (Gradio UI) with conversations saved in SQLite |
-| `feedback_analyzer/` | Turns free-text feedback about a place into validated structured JSON (Pydantic + `with_structured_output`) |
+| `feedback_analyzer/` | Turns free-text feedback about a place into validated structured JSON (Pydantic + `with_structured_output`). `analyzer.py` is the full schema; `streamlined.py` is the compact (<=10 fields) schema |
+| `validation_demo/` | Small Pydantic demo: a strict `Review` model and the errors it reports for a bad payload |
 
-Design notes for the analyzer are in [`docs/feedback-analyzer-design.md`](docs/feedback-analyzer-design.md).
+Design docs (`docs/`):
+- [`design-full.md`](docs/design-full.md) - full schema, implemented by `feedback_analyzer/analyzer.py`
+- [`design-streamlined.md`](docs/design-streamlined.md) - compact schema, implemented by `feedback_analyzer/streamlined.py`
+- [`design-v1-city-area.md`](docs/design-v1-city-area.md) - earlier city/area design, kept for reference only (not implemented)
 The chatbot's behaviour is controlled entirely by [`diet_assistant/prompt.md`](diet_assistant/prompt.md).
 
 ## Run it in VS Code
@@ -22,7 +26,7 @@ The chatbot's behaviour is controlled entirely by [`diet_assistant/prompt.md`](d
 3. Select the interpreter: `Ctrl/Cmd+Shift+P` > **Python: Select Interpreter** > `.venv`.
 4. Add your key: `cp .env.example .env` and set `OPENAI_API_KEY`.
 5. Press **F5** and choose **Diet Chatbot (Gradio)** or **Feedback Analyzer (examples)**
-   (or run `python -m diet_assistant` / `python -m feedback_analyzer`).
+   (or run `python -m diet_assistant`, `python -m feedback_analyzer`, `python -m feedback_analyzer.streamlined`, `python -m validation_demo`).
    The chatbot opens at http://127.0.0.1:7860.
 6. Tests: `pytest` (or the Testing panel). They use a fake model, so no API key or network is needed.
 
@@ -56,7 +60,8 @@ Note: SQLite on free hosts is wiped on restart; use a persistent disk or a hoste
 
 ```
 diet_assistant/     config.py  logic.py  ui.py  prompt.md  __main__.py
-feedback_analyzer/  analyzer.py  __main__.py
+feedback_analyzer/  analyzer.py  streamlined.py  __main__.py
+validation_demo/    review.py  __main__.py
 tests/              offline tests with fake models
 .vscode/            settings, F5 launch configs, extension recommendations
 .github/workflows/  CI
